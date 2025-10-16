@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard", "id": "bb1", "top": 237, "left": 242.8, "attrs": {} },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 28.8, "left": -100.76, "attrs": {} },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 300.74,
+      "left": -105.37,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    { "type": "wokwi-dht22", "id": "dht1", "top": 77.1, "left": -341.4, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -106.9, "left": -57.8, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -147.4,
+      "left": 278.4,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -109.2,
+      "left": 32.6,
+      "attrs": { "color": "cyan" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -109.2,
+      "left": 109.4,
+      "attrs": { "color": "red" }
+    },
+    { 
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -89.2,
+      "left": 32.6,
+      "attrs": { "value": "220" }
+    },
+    { 
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -89.2,
+      "left": 109.4,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "oled1:SDA", "esp:21", "green", [ "v0" ] ],
+    [ "oled1:SCL", "esp:22", "green", [ "v0" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "dht1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "dht1:SDA", "esp:27", "green", [ "v0" ] ],
+    [ "pot1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "pot1:SIG", "esp:33", "green", [ "v0" ] ],
+    [ "btn1:1.l", "esp:14", "green", [ "h0" ] ],
+    [ "esp:GND.1", "bb1:tn.1", "black", [ "h220.95", "v-96", "h48" ] ],
+    [ "pot1:GND", "bb1:tn.2", "black", [ "v0" ] ],
+    [ "dht1:GND", "bb1:tn.3", "black", [ "v0" ] ],
+    [ "oled1:GND", "bb1:tn.4", "black", [ "v0" ] ],
+    [ "btn1:2.r", "bb1:tn.5", "black", [ "v0" ] ],
+    
+    [ "led1:A", "esp:26", "green", [ "v0" ] ],
+    [ "led1:C", "r1:1", "black", [ "v0" ] ],
+    [ "r1:2", "bb1:tn.1", "black", [ "v0" ] ],
+    
+    [ "led2:A", "esp:25", "green", [ "v0" ] ],
+    [ "led2:C", "r2:1", "black", [ "v0" ] ],
+    [ "r2:2", "bb1:tn.1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
